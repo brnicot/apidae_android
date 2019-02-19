@@ -68,10 +68,10 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
         this.rcListePokemons.setLayoutManager(myLinearLayoutManager);
 
         // TODO 11) CREER UN PokemonAdapter POUR GERER L'AFFICHAGE DE CHAQUE POKEMON DANS LA RECYCLERVIEW
-        PokemonAdapter recyclerViewPokeAdapter = new PokemonAdapter(getContext(), navigationManager, this);
+        adapter = new PokemonAdapter(getContext(), navigationManager, this);
 
         // TODO 12) AJOUTER L'ADAPTER A LA RECYCLEVIEW
-        this.rcListePokemons.setAdapter(recyclerViewPokeAdapter);
+        this.rcListePokemons.setAdapter(adapter);
 
         //Initialisation and observation of the ViewModel for this screen
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(PokemonListViewModel.class);
@@ -80,7 +80,7 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
 
         viewModel.getPokemons().observe(this, pokemonList -> {
             // TODO 13) LORSQUE LA LISTE DES POKEMONS ARRIVE IL FAUT LA DONNER A L'ADAPTER
-            recyclerViewPokeAdapter.setData(pokemonList);
+            adapter.setData(pokemonList);
         });
 
     }
