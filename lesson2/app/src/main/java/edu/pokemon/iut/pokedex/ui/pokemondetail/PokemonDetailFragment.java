@@ -73,16 +73,21 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
         PokemonDetailFragment pokemonDetailFragment = new PokemonDetailFragment();
 
         // TODO 14) INSTANCIER UN Bundle ET INSERER DEDANS LE pokemonId AVEC LA CLE KEY_POKEMON_ID
+        Bundle nvBundle = new Bundle();
+        nvBundle.putInt(KEY_POKEMON_ID, pokemonId);
+
         // TODO 15) SETTER COMME ARGUMENTS LE Bundle A pokemonDetailFragment
+        pokemonDetailFragment.setArguments(nvBundle);
 
         return pokemonDetailFragment;
-    }
+}
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (getArguments() != null) {
             // TODO 16) RECUPERER DANS getArguments LE POKEMON ID AVEC LA CLE KEY_POKEMON_ID ET ENREGISTRER LE DANS this.pokemonId
+            this.pokemonId = getArguments().getInt(KEY_POKEMON_ID);
         }
     }
 
@@ -98,7 +103,8 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //TODO 13) RETOURNER LA VUE pokemon_detail_layout EN TANT QUE rootView (UTILISER inflater POUR inflate LA XML)
-        return null;
+        rootView = inflater.inflate(R.layout.pokemon_detail_layout, container, false);
+        return rootView;
     }
 
     @Override
