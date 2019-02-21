@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Singleton;
 
 import edu.pokemon.iut.pokedex.R;
+import edu.pokemon.iut.pokedex.ui.pokemondetail.PokemonDetailFragment;
 import edu.pokemon.iut.pokedex.ui.pokemonlist.PokemonListFragment;
 
 /**
@@ -147,8 +148,13 @@ public class NavigationManager {
      */
     public void startPokemonDetail(int pokemonId, boolean isSwipe) {
         // TODO 21) ENREGISTRER isSwipe dans this.isSwipe
+        this.isSwipe = isSwipe;
+
         // TODO 22) INSTANCIER UN PokemonDetailFragment VIA newInstance
+        PokemonDetailFragment monFragment = PokemonDetailFragment.newInstance(pokemonId);
+
         // TODO 23) APPELER open AVEC LE FRAGMENT, IL N'Y A PAS DE sharedElement, CE N'EST PAS UNE VUE ROOT, IL N'Y A PAS DE TAG
+        open(monFragment, null, false, null);
     }
 
     /**
