@@ -54,35 +54,35 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
     // TODO TOUT EST A FAIRE AVEC BUTTERKNIFE ET LES VUES SONT CELLES CREES DANS pokemon_detail_layout
     // TODO 24) BINDER LE CONSTRAINTLAYOUT GLOBAL
     @BindView(R.id.cl_pokemon_detail)
-    private ConstraintLayout pokemonDetails;
+    public ConstraintLayout pokemonDetails;
 
     // TODO 25) BINDER L'IMAGEVIEW DE L'IMAGE DU POKEMON
     @BindView(R.id.iv_pokemon_image)
-    private ImageView pokemonImage;
+    public ImageView pokemonImage;
 
     // TODO 26) BINDER LA TEXTVIEW POUR LE NUMERO DU POKEMON
     @BindView(R.id.tv_pokemon_number)
-    private TextView pokemonNumber;
+    public TextView pokemonNumber;
 
     // TODO 27) BINDER LA TEXTVIEW POUR LE NOM DU POKEMON
     @BindView(R.id.tv_pokemon_name)
-    private TextView pokemonName;
+    public TextView pokemonName;
 
     // TODO 28) BINDER LA TEXTVIEW POUR L'EXP DE BASE DU POKEMON
     @BindView(R.id.tv_pokemon_base_exp)
-    private TextView pokemonExp;
+    public TextView pokemonExp;
 
     // TODO 29) BINDER LA TEXTVIEW POUR LA TAILLE DU POKEMON
     @BindView(R.id.tv_pokemon_ht)
-    private TextView pokemonHeight;
+    public TextView pokemonHeight;
 
     // TODO 30) BINDER LA TEXTVIEW POUR LE POIDS DU POKEMON
     @BindView(R.id.tv_pokemon_wt)
-    private TextView pokemonWeight;
+    public TextView pokemonWeight;
 
     // TODO 31) BINDER LA TEXTVIEW POUR LE TYPE DU POKEMON
     @BindView(R.id.tv_pokemon_type)
-    private TextView pokemonType;
+    public TextView pokemonType;
 
     /* ATTRIBUTES */
     private int pokemonId;
@@ -141,6 +141,8 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
         //If we can show the navigation, we can then swipe between pokemons
         if (isNavigationShown) {
             // TODO 36) INSTANCIER UN PokemonGestureListener ET SETTER LE onTouchListener du CONSTRAINTLAYOUT GLOBAL DE pokemon_detail_layout AVEC
+            PokemonGestureListener monPokemonGestureListener = new PokemonGestureListener(this, null, getContext());
+            pokemonDetails.setOnTouchListener(monPokemonGestureListener);
         }
 
         //Initialisation and observation of the ViewModel for this screen
@@ -167,6 +169,9 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
         if(pokemon != null) {
             if (getContext() != null) {
                 // TODO 32) UTILISER GLIDE POUR TELECHARGER L'IMAGE DU POKEMON DANS L'IMAGEVIEW
+                RequestOptions request = new RequestOptions();
+                request.placeholder(R.drawable.ic_launcher_pokeball);
+                Glide.with(getContext()).setDefaultRequestOptions(request).load(pokemon.getSpritesString()).into(pokemonImage);
             }
 
             //If we can Navigate between pokemons we show his name on the actionBar, else we keep the default name
@@ -174,13 +179,24 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
             setTitle(isNavigationShown ? pokemon.getName() : null);
 
             // TODO 34) POUR CHAQUE VUE ASSOCIER LA BONNE DONNEE (DES STRINGS SONT A DISPOSITION POUR CERTAINS CHAMPS PENSEZ A LES UTILISER)
+            pokemonNumber.setText(pokemon.getStringId());
+            pokemonName.setText(pokemon.getName());
+            pokemonExp.setText(pokemon.getStringBaseExp());
+            pokemonHeight.setText(pokemon.getStringHeight());
+            pokemonWeight.setText(pokemon.getStringWeight());
 
             // TODO 35) UN POKEMON PEUT AVOIR PLUSIEURS TYPES, N'AFFICHER QUE LE PREMIER POUR LE MOMENT (BONUS SI VOUS AFFICHEZ TOUT LES TYPES D'UN POKEMON)
+            pokemonType.setText(pokemon.getTypes().get(0).toString());
         }
     }
 
     @Override
     public void onSwipe(int direction) {
         // TODO 37) VERIFIER LA DIRECTION avec PokemonGestureListener.LEFT ou .RIGHT ET APPELER navigationManager POUR AFFICHER LE DETAIL DU POKEMON SUIVANT OU PRECEDENT
+        if (direction == PokemonGestureListener.LEFT) {
+            navigationManager.startPokemonDetail(pokemonId - 1, false);
+        } else if (direction == PokemonGestureListener.RIGHT) {
+            navigationManager.startPokemonDetail(pokemonId + 1, false);
+        }
     }
 }
