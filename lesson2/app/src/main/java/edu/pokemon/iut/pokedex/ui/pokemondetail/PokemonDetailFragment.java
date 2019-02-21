@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import dagger.Binds;
 import edu.pokemon.iut.pokedex.PokedexApp;
 import edu.pokemon.iut.pokedex.R;
 import edu.pokemon.iut.pokedex.architecture.BaseFragment;
@@ -51,13 +53,36 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
     /* VIEWS */
     // TODO TOUT EST A FAIRE AVEC BUTTERKNIFE ET LES VUES SONT CELLES CREES DANS pokemon_detail_layout
     // TODO 24) BINDER LE CONSTRAINTLAYOUT GLOBAL
+    @BindView(R.id.cl_pokemon_detail)
+    private ConstraintLayout pokemonDetails;
+
     // TODO 25) BINDER L'IMAGEVIEW DE L'IMAGE DU POKEMON
+    @BindView(R.id.iv_pokemon_image)
+    private ImageView pokemonImage;
+
     // TODO 26) BINDER LA TEXTVIEW POUR LE NUMERO DU POKEMON
+    @BindView(R.id.tv_pokemon_number)
+    private TextView pokemonNumber;
+
     // TODO 27) BINDER LA TEXTVIEW POUR LE NOM DU POKEMON
+    @BindView(R.id.tv_pokemon_name)
+    private TextView pokemonName;
+
     // TODO 28) BINDER LA TEXTVIEW POUR L'EXP DE BASE DU POKEMON
+    @BindView(R.id.tv_pokemon_base_exp)
+    private TextView pokemonExp;
+
     // TODO 29) BINDER LA TEXTVIEW POUR LA TAILLE DU POKEMON
+    @BindView(R.id.tv_pokemon_ht)
+    private TextView pokemonHeight;
+
     // TODO 30) BINDER LA TEXTVIEW POUR LE POIDS DU POKEMON
+    @BindView(R.id.tv_pokemon_wt)
+    private TextView pokemonWeight;
+
     // TODO 31) BINDER LA TEXTVIEW POUR LE TYPE DU POKEMON
+    @BindView(R.id.tv_pokemon_type)
+    private TextView pokemonType;
 
     /* ATTRIBUTES */
     private int pokemonId;
