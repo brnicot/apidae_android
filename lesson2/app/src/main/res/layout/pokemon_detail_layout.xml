@@ -11,8 +11,8 @@
     <!-- TODO 1) INSERER UNE IMAGEVIEW POUR L'IMAGE DU POKEMON -->
     <ImageView
         android:id="@+id/iv_pokemon_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
         android:contentDescription="@string/pokemon_image_description"
@@ -25,9 +25,9 @@
         android:id="@+id/tv_pokemon_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_pokemon_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="NOMBRE POKEMON" />
 
@@ -36,9 +36,9 @@
         android:id="@+id/tv_pokemon_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_pokemon_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="NOM POKEMON" />
 

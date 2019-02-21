@@ -91,7 +91,7 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
     private int idMaxPokemon;
 
     /**
-     * @param pokemonId         id of the pokemon shown
+     * @param pokemonId id of the pokemon shown
      * @return newInstance of PokemonDetailFragment
      */
     public static PokemonDetailFragment newInstance(int pokemonId) {
@@ -105,7 +105,7 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
         pokemonDetailFragment.setArguments(nvBundle);
 
         return pokemonDetailFragment;
-}
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -166,7 +166,7 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
      * @param pokemon {@link Pokemon} to show
      */
     private void initView(Pokemon pokemon) {
-        if(pokemon != null) {
+        if (pokemon != null) {
             if (getContext() != null) {
                 // TODO 32) UTILISER GLIDE POUR TELECHARGER L'IMAGE DU POKEMON DANS L'IMAGEVIEW
                 RequestOptions request = new RequestOptions();
@@ -186,16 +186,16 @@ public class PokemonDetailFragment extends BaseFragment implements PokemonGestur
             pokemonWeight.setText(pokemon.getStringWeight());
 
             // TODO 35) UN POKEMON PEUT AVOIR PLUSIEURS TYPES, N'AFFICHER QUE LE PREMIER POUR LE MOMENT (BONUS SI VOUS AFFICHEZ TOUT LES TYPES D'UN POKEMON)
-            pokemonType.setText(pokemon.getTypes().get(0).toString());
+            pokemonType.setText(pokemon.getTypes().get(0).getType().getName());
         }
     }
 
     @Override
     public void onSwipe(int direction) {
         // TODO 37) VERIFIER LA DIRECTION avec PokemonGestureListener.LEFT ou .RIGHT ET APPELER navigationManager POUR AFFICHER LE DETAIL DU POKEMON SUIVANT OU PRECEDENT
-        if (direction == PokemonGestureListener.LEFT) {
+        if (direction == PokemonGestureListener.LEFT && pokemonId -1 > 0) {
             navigationManager.startPokemonDetail(pokemonId - 1, false);
-        } else if (direction == PokemonGestureListener.RIGHT) {
+        } else if (direction == PokemonGestureListener.RIGHT && pokemonId + 1 <= idMaxPokemon) {
             navigationManager.startPokemonDetail(pokemonId + 1, false);
         }
     }

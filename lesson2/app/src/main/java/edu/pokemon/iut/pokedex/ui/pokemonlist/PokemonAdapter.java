@@ -55,6 +55,12 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
         holder.pokemonNumber.setText(context.getString(R.string.number, pokemon.getId()));
         holder.pokemonName.setText(pokemon.getName());
 
+        holder.pokemonName.setOnClickListener(
+                v -> {
+                    navigationManager.startPokemonDetail(pokemon.getId(), true);
+                }
+        );
+
         // BONUS IMAGE POKEMON ET PLACEHOLDER
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
