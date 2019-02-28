@@ -95,9 +95,11 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(PokemonListViewModel.class);
         CharSequence query = null;
         //TODO 15) RECUPERER DANS LES ARGUMENTS DU FRAGMENT LA REQUETE ENREGISTRER ET METTER LA DANS 'query'
-        //TODO 16) TESTER LA RECHERCHE ET DITE MOI CE QUI NE VAS PAS
-        viewModel.init(query);
+        query = getArguments().getCharSequence(QUERY_FILTER_KEY);
 
+        //TODO 16) TESTER LA RECHERCHE ET DITE MOI CE QUI NE VAS PAS
+        // la recherche saute quand on change d'orientation
+        viewModel.init(query);
         viewModel.getPokemons().observe(this, pokemonList -> adapter.setData(pokemonList));
 
     }

@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     protected final String LAST_QUERY_KEY = "lastQuery";
 
     //TODO 3) AJOUTER UNE VARIABLE QUI STOCKERA LA DERNIERER RECHERCHE EFFECTUE
-    protected String lastQuery;
+    protected CharSequence lastQuery;
 
     @Inject
     protected NavigationManager navigationManager;
@@ -96,11 +96,23 @@ public class BaseActivity extends AppCompatActivity {
         //TODO 12) RETOURNER A LA FIN DE LA METHODE super.onCreateOptionMenu(menu)
         return super.onCreateOptionsMenu(menu);
     }
-    
 
     //TODO 17) OVERRIDE LA METHODE onSaveInstanceState
-    //TODO 18) DANS LA METHODE onSaveInstanceState SAUVEGARDER LA REQUETE EN COURS
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //TODO 18) DANS LA METHODE onSaveInstanceState SAUVEGARDER LA REQUETE EN COURS
+        super.onSaveInstanceState(outState);
+        outState.putCharSequence(LAST_QUERY_KEY, lastQuery);
+    }
+
     //TODO 19) OVERRIDE LA METHODE onRestoreInstanceState
-    //TODO 20) DANS LA METHODE onRestoreInstanceState RECUPERER LA REQUETE PRECEDEMMENT SAUVEGARDER LA DANS LA VARIABLE DE CLASSE
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        //TODO 20) DANS LA METHODE onRestoreInstanceState RECUPERER LA REQUETE PRECEDEMMENT SAUVEGARDER LA DANS LA VARIABLE DE CLASSE
+        super.onRestoreInstanceState(savedInstanceState);
+        lastQuery = savedInstanceState.getCharSequence(LAST_QUERY_KEY);
+    }
+
     //TODO 21) CERTAIN DES SOUCIS DEVRAIT ETRE REGLER MAIS IL RESTE ENCORE QUELQUE BUG : BONUS SI VOUS ARRIVEZ A LES CORRIGERS
+    //TODO 34 perso : réparer ce menu
 }
