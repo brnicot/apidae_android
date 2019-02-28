@@ -27,6 +27,7 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
     private static final String TAG = PokemonListFragment.class.getSimpleName();
 
     //TODO 13) CREER UNE CONSTANTE QUI SERVIRA DE CLE POUR RECUPERER LA REQUETE RECU POUR FILTRER LA LISTE DE POKEMON
+    public static final String QUERY_FILTER_KEY = "queryFilter";
 
     /* VIEWS */
     @BindView(R.id.rv_pokemon_list)
@@ -45,6 +46,9 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
         PokemonListFragment pokemonListFragment = new PokemonListFragment();
 
         //TODO 14) UTILISER UN BUNDLE POUR ENREGISTRER LA REQUETE 'query' ET PASSER LE EN ARGUMENTS AU FRAGEMENT
+        Bundle bundle = new Bundle();
+        bundle.putCharSequence(QUERY_FILTER_KEY, query);
+        pokemonListFragment.setArguments(bundle);
         return pokemonListFragment;
     }
 
