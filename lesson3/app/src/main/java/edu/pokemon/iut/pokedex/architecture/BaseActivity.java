@@ -114,5 +114,4 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     //TODO 21) CERTAIN DES SOUCIS DEVRAIT ETRE REGLER MAIS IL RESTE ENCORE QUELQUE BUG : BONUS SI VOUS ARRIVEZ A LES CORRIGERS
-    //TODO 34 perso : réparer ce menu
 }
