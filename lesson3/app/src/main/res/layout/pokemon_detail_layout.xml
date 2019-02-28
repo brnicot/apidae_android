@@ -21,6 +21,16 @@
         tools:srcCompat="@drawable/ic_launcher_pokeball" />
 
     <!-- TODO 26) RAJOUTER UNE CIRCLEVIEW (SUR LE MEME MODEL QUE pokemon_line_view) AVEC UNE IMAGE VIEW DEDANS AFIN DE POUVOIR CAPTURE LE POKEMON, POSITIONNER LA PAR DESSUS L'IMAGE DU POKEMON -->
+    <com.github.florent37.shapeofview.shapes.CircleView
+        android:id="@+id/cv_pokeball_capture"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_pokemon_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_launcher_pokeball" />
 
     <TextView
         android:id="@+id/tv_pokemon_numero"

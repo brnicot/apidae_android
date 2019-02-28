@@ -108,7 +108,7 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
     public void onResume() {
         super.onResume();
         //TODO 32) BONUS FAITE REMONTER LA RECYCLER VIEW SUR LE DERNIER POKEMON CONSULTER
-        //TODO 33) AIDER VOUS AVEC NavigationManater ET scrollToPosition DE LA RECYCLERVIEW
+        //TODO 33) AIDER VOUS AVEC NavigationManager ET scrollToPosition DE LA RECYCLERVIEW
     }
 
 
