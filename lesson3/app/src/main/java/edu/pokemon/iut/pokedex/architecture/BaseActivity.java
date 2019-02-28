@@ -80,18 +80,36 @@ public class BaseActivity extends AppCompatActivity {
                 new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String query) {
                         //TODO 11) N'OUBLIER PAS DE SAUVEGARDER LA REQUETE DANS LA VARIABLE DE CLASSE
                         lastQuery = query;
                         navigationManager.startPokemonList(null, query);
                         return true;
                     }
+
+                    @Override
+                    public boolean onQueryTextChange(String query) {
+                        return false;
+                    }
                 }
         );
+
+        //TODO 34) perso : réparer le menu recherche lors du chgmt orientation
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                return true;
+            }
+        });
+
+        if(lastQuery != null && lastQuery.length() != 0) {
+            searchItem.expandActionView();
+            searchView.setQuery(lastQuery, true);
+        }
 
         //TODO 12) RETOURNER A LA FIN DE LA METHODE super.onCreateOptionMenu(menu)
         return super.onCreateOptionsMenu(menu);
@@ -101,18 +119,17 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //TODO 18) DANS LA METHODE onSaveInstanceState SAUVEGARDER LA REQUETE EN COURS
-        super.onSaveInstanceState(outState);
         outState.putCharSequence(LAST_QUERY_KEY, lastQuery);
+        super.onSaveInstanceState(outState);
     }
 
     //TODO 19) OVERRIDE LA METHODE onRestoreInstanceState
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         //TODO 20) DANS LA METHODE onRestoreInstanceState RECUPERER LA REQUETE PRECEDEMMENT SAUVEGARDER LA DANS LA VARIABLE DE CLASSE
-        super.onRestoreInstanceState(savedInstanceState);
         lastQuery = savedInstanceState.getCharSequence(LAST_QUERY_KEY);
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     //TODO 21) CERTAIN DES SOUCIS DEVRAIT ETRE REGLER MAIS IL RESTE ENCORE QUELQUE BUG : BONUS SI VOUS ARRIVEZ A LES CORRIGERS
-    //TODO 34) perso : réparer le menu recherche lors du chgmt orientation
 }
