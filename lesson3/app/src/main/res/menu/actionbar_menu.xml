@@ -2,4 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- TODO 1) AJOUTER UN item QUI AURA UNE ICONE DE RECHERCHE, QUI DEVRA TOUJOURS ETRE VISIBLE ET QUI A COMME actionViewClass une UNE SearchView -->
+    <item android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>
