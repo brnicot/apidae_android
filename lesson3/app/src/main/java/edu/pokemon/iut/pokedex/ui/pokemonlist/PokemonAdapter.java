@@ -54,19 +54,29 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.ViewHold
         holder.pokemonNumber.setText(context.getString(R.string.number, pokemon.getId()));
         holder.pokemonName.setText(pokemon.getName());
 
-        //TODO 22) EN FONCTION DE L'ETAT DE CAPTURE DU POKEMON CHANGER L'IMAGE DE LA POKEBALL (pokemonCapture) (Vide > Pas capturer, Pleine > Capturer)
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .placeholder(R.drawable.ic_launcher_pokeball)
                 .centerCrop();
+
         Glide.with(context)
                 .load(pokemon.getSpritesString())
                 .apply(options)
                 .into(holder.pokemonLogo);
 
+        //TODO 22) EN FONCTION DE L'ETAT DE CAPTURE DU POKEMON CHANGER L'IMAGE DE LA POKEBALL (pokemonCapture) (Vide > Pas capturer, Pleine > Capturer)
+        if(pokemon.isCapture()) {
+            Glide.with(context).load(R.drawable.ic_launcher_pokeball).apply(options).into(holder.pokemonCapture);
+        }
+        else {
+            Glide.with(context).load(R.drawable.ic_launcher_pokeball_empty).apply(options).into(holder.pokemonCapture);
+        }
+
+
         holder.pokemonLine.setOnClickListener(v -> navigationManager.startPokemonDetail(pokemon.getId(), null, false));
 
         //TODO 23) AJOUTER UN LISTENER AU CLICK SUR LA POKEBALL (pokemonCapture) QUI DECLENCHERA LA CAPTURE DU POKEMON (Utiliser le CaptureListener)
+        holder.pokemonCapture.setOnClickListener(v -> captureListener.onCapture(pokemon));
     }
 
     @Override

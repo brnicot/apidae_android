@@ -115,6 +115,7 @@ public class PokemonListFragment extends BaseFragment implements PokemonAdapter.
     @Override
     public void onCapture(Pokemon pokemon) {
         //TODO 24) AVEC LE viewModel LANCER LA CAPTURE DU POKEMON CLICKER
+        viewModel.capture(pokemon);
         //TODO 25) TESTER QUE LA POKEBALL CHANGE BIEN DE VIDE A PLEINE LORS DU CLICK (UNE CERTAINE LATENCE PEUT ETRE REMARQUER)
     }
 }
